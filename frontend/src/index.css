@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* Base body styling */
+body {
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+html.dark body {
+  background-color: #020617;
+  color: #f1f5f9;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #1e293b;
+}
+
+html.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #0f172a;
+  transition: all 0.2s ease-in-out;
+}
+
+html.dark .glass-input {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+}
+
+.glass-input:focus {
+  border-color: #00f0ff;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+  outline: none;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.6);
+}
+
+/* Animations & Keyframes */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.ambient-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+  animation: pulseGlow 8s infinite ease-in-out;
+}
+
+.ambient-blue {
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.3) 0%, transparent 70%);
+  top: -100px;
+  right: -50px;
+}
+
+.ambient-pink {
+  background: radial-gradient(circle, rgba(255, 0, 127, 0.2) 0%, transparent 70%);
+  bottom: -150px;
+  left: -100px;
+  animation-delay: 4s;
+}
+
+/* Shimmer/Pulse animations */
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: rgba(0, 240, 255, 0.4);
+  }
+  50% {
+    border-color: rgba(255, 0, 127, 0.6);
+  }
+}
+
+.cyber-card-active {
+  animation: borderGlow 4s infinite ease-in-out;
+}
+
+/* --- Theme Responsive Text & Input Overrides --- */
+html:not(.dark) .text-slate-100,
+html:not(.dark) .text-slate-200,
+html:not(.dark) .text-slate-300,
+html:not(.dark) .text-slate-50,
+html:not(.dark) .text-white {
+  color: #0f172a !important; /* Slate 900 (Black-ish) */
+}
+
+html:not(.dark) .text-slate-400 {
+  color: #334155 !important; /* Slate 700 */
+}
+
+html:not(.dark) .text-slate-500 {
+  color: #64748b !important; /* Slate 500 */
+}
+
+/* Ensure inputs, select lists, and textareas stay dark text on light backgrounds */
+html:not(.dark) input,
+html:not(.dark) select,
+html:not(.dark) textarea,
+html:not(.dark) select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Muted placeholder text overrides in light mode */
+html:not(.dark) ::placeholder {
+  color: #94a3b8 !important;
+}
+
